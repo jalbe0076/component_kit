@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build:app": "next build",
+    "build:components": "tsc --build tsconfig.json",
     "start": "next start",
     "lint": "next lint"
   },
@@ -21,5 +22,13 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
     "@eslint/eslintrc": "^3"
+  },
+  "main": "src/components",  
+  "files": [
+    "src/components"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./components": "./dist/components"
   }
 }
