@@ -1,11 +1,11 @@
 .btn {
     border-radius: var(--btn-border-radius);
     border: none;
+    box-sizing: border-box;
     padding: var(--padding, 5px 15px);
     font-size: var(--font-size, 0.875rem);
     line-height: 1.75;
     margin: 0;
-    cursor: pointer;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -16,22 +16,27 @@
         color: var(--btn-secondary-color);
     }
 
-    &.primary:hover {
+    &:hover:not([disabled]) {
+        cursor: pointer;
         background-color: var(--btn-primary-color-hover);
+    }
+
+    &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
     }
 
     &.secondary, &.outline {
         background-color: var(--btn-secondary-color);
         color: var(--btn-primary-color);
         
-        &:hover {
-            background-color: var(--btn-primary-color);
+        &:hover:not([disabled]) {
             color: var(--btn-secondary-color);
         }
     }
     
     &.outline {
-        border: 1px solid var(--primary-color);
+        border: 1px solid var(--btn-primary-color);
         padding: 4px 14px;
     }
 
