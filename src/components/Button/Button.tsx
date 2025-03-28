@@ -1,5 +1,4 @@
 "use client";
-import { SVGProps } from "react";
 import styles from "./button.module.scss";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,7 +14,16 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     rounded?: boolean;
     iconLeft?: React.ReactNode;
     iconRight?: React.ReactNode;
+    // Overwriting the default style of the button so that custom css properties can be applied
+    style?: React.CSSProperties;
 }
+
+interface CSSPropertiesWithVariables extends React.CSSProperties {
+    "--btn-primary-color"?: string;
+    "--btn-primary-color-hover"?: string;
+    "--btn-secondary-color"?: string;
+    "--btn-border-radius"?: string;
+  }
 
 const Button: React.FC<ButtonProps> = ({
     children,
@@ -26,28 +34,30 @@ const Button: React.FC<ButtonProps> = ({
     rounded = false,
     iconLeft,
     iconRight,
+    style,
     ...htmlBtnProps
 }) => {
 
-    const btnColorsStyles: {[key: string]: string} = {
+    const btnColorsStyles: CSSPropertiesWithVariables = {
         "--btn-primary-color": color,
         "--btn-primary-color-hover": colorHover,
         "--btn-secondary-color": "#FFF",
-        "--btn-border-radius": rounded ? "9999px" : "4px",
+        "--btn-border-radius": rounded ? "9999px" : "0.25rem",
+        ...style
     };
 
-  return (
-    <button 
-        className={`${styles.btn} ${variant && styles[variant]}`} 
-        onClick={onClick} 
-        style={btnColorsStyles}
-        {...htmlBtnProps}
-    >
-        {iconLeft}
-        {children}
-        {iconRight}
-    </button>
-  );
+    return (
+        <button 
+            className={`${styles.btn} ${variant && styles[variant]}`} 
+            onClick={onClick} 
+            style={btnColorsStyles}
+            {...htmlBtnProps}
+        >
+            {iconLeft}
+            {children}
+            {iconRight}
+        </button>
+    );
 }
 
 export default Button;
