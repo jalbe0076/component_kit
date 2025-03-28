@@ -44,7 +44,7 @@
         background-color: #dc2626;
         color: var(--btn-secondary-color);
         
-        &:hover {
+        &:hover:not([disabled]) {
             background-color: #b91c1c;
         }
     }

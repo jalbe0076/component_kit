@@ -6,9 +6,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     onClick?: () => void;
     // Variants alter the button's style, no value is the default style for a bold colour button
     variant?: "primary" | "secondary" | "outline" | "destructive";
-    // Default color is #463ACB, color accepts a HEX value and will customize the button color
+    // Default color is #463ACB, overwriting will customize the button color, not applicable for the destructive variant
     color?: string;
-    // Default hover color is #3730a3, color accepts a HEX value and will customize the button color on hover
+    // Default hover color is #3730a3, overwriting will customize the button color on hover, not applicable for the destructive variant
     colorHover?: string;
     // This will round the button's corners to a rounded, pill-like shape
     rounded?: boolean;
@@ -28,7 +28,6 @@ const Button: React.FC<ButtonProps> = ({
         "--btn-primary-color": color,
         "--btn-primary-color-hover": colorHover,
         "--btn-secondary-color": "#FFF",
-        "--btn-secondary-color-hover": color,
         "--btn-border-radius": rounded ? "9999px" : "4px",
     };
 
