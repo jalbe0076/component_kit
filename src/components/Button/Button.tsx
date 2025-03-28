@@ -1,8 +1,9 @@
 "use client";
+import { SVGProps } from "react";
 import styles from "./button.module.scss";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    children: React.ReactNode;
+    children?: React.ReactNode; // Wrap SVG's in a span to set proper line-height
     onClick?: () => void;
     // Variants alter the button's style, no value is the default style for a bold colour button
     variant?: "primary" | "secondary" | "outline" | "destructive";
@@ -12,6 +13,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     colorHover?: string;
     // This will round the button's corners to a rounded, pill-like shape
     rounded?: boolean;
+    iconLeft?: React.ReactNode;
+    iconRight?: React.ReactNode;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -21,6 +24,8 @@ const Button: React.FC<ButtonProps> = ({
     color = "#463ACB",
     colorHover = "#3730a3",
     rounded = false,
+    iconLeft,
+    iconRight,
     ...htmlBtnProps
 }) => {
 
@@ -38,7 +43,9 @@ const Button: React.FC<ButtonProps> = ({
         style={btnColorsStyles}
         {...htmlBtnProps}
     >
+        {iconLeft}
         {children}
+        {iconRight}
     </button>
   );
 }

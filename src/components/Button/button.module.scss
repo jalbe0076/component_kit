@@ -10,28 +10,36 @@
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease;
-
+    column-gap: 8px;
+    fill: var(--btn-secondary-color);
+    
+    svg {
+        vertical-align: middle;
+    }
+    
     &.primary {
         background-color: var(--btn-primary-color);
         color: var(--btn-secondary-color);
     }
-
+    
     &:hover:not([disabled]) {
         cursor: pointer;
         background-color: var(--btn-primary-color-hover);
     }
-
+    
     &:disabled {
         opacity: 0.7;
         cursor: not-allowed;
     }
-
+    
     &.secondary, &.outline {
         background-color: var(--btn-secondary-color);
         color: var(--btn-primary-color);
+        fill: var(--btn-primary-color);
         
         &:hover:not([disabled]) {
             color: var(--btn-secondary-color);
+            fill: var(--btn-secondary-color);
         }
     }
     
@@ -39,7 +47,7 @@
         border: 1px solid var(--btn-primary-color);
         padding: 4px 14px;
     }
-
+    
     &.destructive {
         background-color: #dc2626;
         color: var(--btn-secondary-color);
