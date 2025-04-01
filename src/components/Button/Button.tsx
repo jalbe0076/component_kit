@@ -12,8 +12,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     colorHover?: string;
     // This will round the button's corners to a rounded, pill-like shape
     rounded?: boolean;
-    iconLeft?: React.ReactNode;
-    iconRight?: React.ReactNode;
+    iconLeft?: React.ReactElement<React.SVGProps<SVGSVGElement>>;
+    iconRight?: React.ReactElement<React.SVGProps<SVGSVGElement>>;
+    // Size property will affect the padding and font size
+    size?: "sm" | "md" | "lg" | "xl";
     // Overwriting the default style of the button so that custom css properties can be applied
     style?: React.CSSProperties;
 }
@@ -34,6 +36,7 @@ const Button: React.FC<ButtonProps> = ({
     rounded = false,
     iconLeft,
     iconRight,
+    size = "md",
     style,
     ...htmlBtnProps
 }) => {
@@ -50,12 +53,13 @@ const Button: React.FC<ButtonProps> = ({
         <button 
             className={`${styles.btn} ${variant && styles[variant]}`} 
             onClick={onClick} 
+            data-size={size}
             style={btnColorsStyles}
             {...htmlBtnProps}
         >
-            {iconLeft}
+            {iconLeft && <span>{iconLeft}</span>}
             {children}
-            {iconRight}
+            {iconRight && <span>{iconRight}</span>}
         </button>
     );
 }

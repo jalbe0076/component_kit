@@ -1,9 +1,33 @@
+.btn[data-size="sm"] {
+    --paddingY: 4px;
+    --paddingX: 10px;
+    --font-size: 13px;
+}
+
+.btn[data-size="md"] {
+    --paddingY: 6px;
+    --paddingX: 16px;
+    --font-size: 16px; 
+}
+
+.btn[data-size="lg"] {
+    --paddingY: 8px;
+    --paddingX: 22px;
+    --font-size: 17px;
+}
+
+.btn[data-size="xl"] {
+    --paddingY: 10px;
+    --paddingX: 28px;
+    --font-size: 18px;
+}
+
 .btn {
     border-radius: var(--btn-border-radius);
     border: none;
     box-sizing: border-box;
-    padding: var(--padding, 5px 15px);
-    font-size: var(--font-size, 0.875rem);
+    padding: var(--paddingY) var(--paddingX);
+    font-size: var(--font-size);
     line-height: 1.75;
     margin: 0;
     display: inline-flex;
@@ -12,9 +36,19 @@
     transition: background-color 0.3s ease;
     column-gap: 8px;
     fill: var(--btn-secondary-color);
-    
-    svg {
-        vertical-align: middle;
+
+    span::before {
+        content: "\200b"; // Zero-width space
+    }
+
+    span {
+        display: inline-flex;
+        align-items: center;
+
+        svg {
+          width: var(--icon-size);
+          height: var(--icon-size);
+        }
     }
     
     &.primary {
@@ -44,8 +78,8 @@
     }
     
     &.outline {
+        padding: calc(var(--paddingY) - 1px) calc(var(--paddingX) - 1px);
         border: 1px solid var(--btn-primary-color);
-        padding: 4px 14px;
     }
     
     &.destructive {
