@@ -1,7 +1,7 @@
 "use client";
-import styles from "./page.module.scss";
 import { Button } from "../components";
 import StarIcon from "../icons/StarIcon";
+import styles from "./page.module.scss";
 
 export default function Home() {
   const handleClick = () => {
@@ -10,30 +10,7 @@ export default function Home() {
 
   return (
     <div style={{margin: "20px"}}>
-      <Button disabled onClick={handleClick}>Button CSV</Button>
-      <Button disabled  rounded={true}  onClick={handleClick}>Button CSV</Button>
-      <Button disabled variant="secondary" onClick={handleClick}>Button CSV</Button>
-      <Button  disabled variant="outline" onClick={handleClick}>Button CSV</Button>
-      <Button disabled color="#008000" variant="destructive" onClick={handleClick}>Button CSV</Button>
-      <Button disabled color="#008000" onClick={handleClick}>Button CSV</Button>
-      <Button disabled variant="secondary" color="#008000" onClick={handleClick}>Button CSV</Button>
-      <Button  onClick={handleClick}><span><StarIcon/></span></Button>
-      <Button iconRight={<StarIcon/>} onClick={handleClick}></Button>
-      <Button onClick={handleClick}>Button CSV</Button>
-      <Button iconLeft={<StarIcon/>} iconRight={<StarIcon/>} onClick={handleClick}><StarIcon/></Button>
-      <Button iconLeft={<StarIcon/>} onClick={handleClick}></Button>
-      <Button iconLeft={<StarIcon/>}  onClick={handleClick}>Button CSV</Button>
-      <Button iconRight={<StarIcon/>} onClick={handleClick}>Button CSV</Button>
-      <Button  rounded={true} iconRight={<StarIcon/>} onClick={handleClick}>Button CSV</Button>
-      <Button iconRight={<StarIcon/>} variant="secondary" onClick={handleClick}>Button CSV</Button>
-      <Button  iconRight={<StarIcon/>} variant="outline" onClick={handleClick}>Button CSV</Button>
-      <Button iconRight={<StarIcon/>} color="#008000" variant="destructive" onClick={handleClick}>Button CSV</Button>
-      <Button iconLeft={<StarIcon/>} size="sm" onClick={handleClick}>Button CSV</Button>
-      <Button iconLeft={<StarIcon/>} size="md" onClick={handleClick}>Button CSV</Button>
-      <Button iconLeft={<StarIcon/>} size="lg" onClick={handleClick}>Button CSV</Button>
-      <Button iconLeft={<StarIcon/>} size="xl" onClick={handleClick}>Button CSV</Button>
-
-
+      <Button className={styles.test} iconRightClassName={styles.test2} iconRight={<StarIcon/>} onClick={handleClick}>Button CSV</Button>
     </div>
   );
 }
