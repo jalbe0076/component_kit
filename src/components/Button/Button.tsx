@@ -9,9 +9,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
     // Default color is #463ACB, overwriting will customize the button color, not applicable for the destructive variant
     color?: string;
-    // Default hover color is #3730a3, overwriting will customize the button color on hover, not applicable for the destructive variant
+    // Default hover color isrgb(180, 180, 183), overwriting will customize the button color on hover, not applicable for the destructive variant
     colorHover?: string;
     // This will round the button's corners to a rounded, pill-like shape
+    isDark?: boolean;
     rounded?: boolean;
     iconLeft?: React.ReactElement<React.SVGProps<SVGSVGElement>>;
     iconLeftClassName?: string;
@@ -26,7 +27,6 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 interface CSSPropertiesWithVariables extends React.CSSProperties {
     "--btn-primary-color"?: string;
     "--btn-primary-color-hover"?: string;
-    "--btn-secondary-color"?: string;
     "--btn-border-radius"?: string;
 }
 
@@ -37,6 +37,7 @@ const Button: React.FC<ButtonProps> = ({
     className,
     color = "#463ACB",
     colorHover = "#3730a3",
+    isDark = false,
     rounded = false,
     iconLeft,
     iconLeftClassName,
@@ -51,7 +52,6 @@ const Button: React.FC<ButtonProps> = ({
     const btnColorsStyles: CSSPropertiesWithVariables = {
         "--btn-primary-color": color,
         "--btn-primary-color-hover": colorHover,
-        "--btn-secondary-color": "#FFF",
         "--btn-border-radius": rounded ? "9999px" : "0.25rem",
         ...style
     };
@@ -61,6 +61,7 @@ const Button: React.FC<ButtonProps> = ({
             className={combinedClassNames.trim()} 
             onClick={onClick} 
             data-size={size}
+            data-theme={isDark ? "dark" : "light"}
             style={btnColorsStyles}
             {...htmlBtnProps}
         >
