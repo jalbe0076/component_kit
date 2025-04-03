@@ -54,10 +54,7 @@
         }
     }
     
-    &.primary {
-        background-color: var(--btn-primary-color);
-        color: var(--btn-secondary-color);
-    }
+    
     
     &:hover:not([disabled]) {
         cursor: pointer;
@@ -69,22 +66,6 @@
         cursor: not-allowed;
     }
     
-    &.secondary, &.outline {
-        background-color: var(--btn-secondary-color);
-        color: var(--btn-primary-color);
-        fill: var(--btn-primary-color);
-        
-        &:hover:not([disabled]) {
-            color: var(--btn-secondary-color);
-            fill: var(--btn-secondary-color);
-        }
-    }
-    
-    &.outline {
-        padding: calc(var(--paddingY) - 1px) calc(var(--paddingX) - 1px);
-        border: 1px solid var(--btn-primary-color);
-    }
-    
     &.destructive {
         background-color: #dc2626;
         color: var(--btn-secondary-color);
@@ -93,37 +74,58 @@
             background-color: #b91c1c;
         }
     }
+}
 
-    &.link-color,
-    &.link-grey{
-        padding: 0;
-        border: none;
-        box-shadow: none;
+.primary {
+    background-color: var(--btn-primary-color);
+    color: var(--btn-secondary-color);
+}
+
+.secondary, .outline {
+    background-color: var(--btn-secondary-color);
+    color: var(--btn-primary-color);
+    fill: var(--btn-primary-color);
+    
+    &:hover:not([disabled]) {
+        color: var(--btn-secondary-color);
+        fill: var(--btn-secondary-color);
+    }
+}
+
+.outline {
+    padding: calc(var(--paddingY) - 1px) calc(var(--paddingX) - 1px);
+    border: 1px solid var(--btn-primary-color);
+}
+
+.link-color,
+.link-grey{
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+
+    &:hover:not([disabled]) {
         background-color: transparent;
-
-        &:hover:not([disabled]) {
-            background-color: transparent;
-            background-color: transparent;
-        }
+        background-color: transparent;
     }
+}
 
-    &.link-color {
-        color: var(--btn-primary-color);
-        fill: var(--btn-primary-color);
+.link-color {
+    color: var(--btn-primary-color);
+    fill: var(--btn-primary-color);
 
-        &:hover:not([disabled]) {
-            color: var(--btn-primary-color-hover);
-            fill: var(--btn-primary-color-hover);
-        }
+    &:hover:not([disabled]) {
+        color: var(--btn-primary-color-hover);
+        fill: var(--btn-primary-color-hover);
     }
+}
 
-    &.link-grey {
-        color: #525252;
-        fill: #525252;
-        
-        &:hover:not([disabled]) {
-            color: #171717;
-            fill: #171717;
-        }
+.link-grey {
+    color: #525252;
+    fill: #525252;
+    
+    &:hover:not([disabled]) {
+        color: #171717;
+        fill: #171717;
     }
 }
