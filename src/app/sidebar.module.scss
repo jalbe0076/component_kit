@@ -1,19 +1,14 @@
 .sidebar {
   background-color: #3e433b;
   color: #f6f6f6;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
   height: 100vh;
   position: sticky;
   top: 0;
-  border-right: 2px solid #2a2e28;
   transition: all 0.3s ease;
 
   &.closed {
-    min-width: 20px;
-    width: 20px;
-    overflow: hidden;
+    min-width: 8px;
+    width: 8px;
   }
 
   &.open {
@@ -22,23 +17,59 @@
   }
 }
 
+.sidebarContent {
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+  border-right: 3px solid #2a2e28;
+
+  .closed & {
+    padding: 0;
+  }
+}
+
 .toggleButton {
   position: absolute;
-  right: -15px;
-  top: 40px;
-  width: 30px;
-  height: 30px;
-  background-color: #2a2e28;
-  border: 2px solid #2a2e28;
-  transform: rotate(45deg);
+  top: 20px;
+  right: 0;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
   z-index: 10;
-  transition: background-color 0.3s ease;
 
-  &:hover,
-  &:focus {
-    background-color: #4b5247;
-    outline: none;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #2a2e28;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease, transform-origin 0.3s ease;
+  }
+
+  &.open::before {
+    transform: rotate(90deg);
+    transform-origin: 0 50%;
+    right: -15px;
+  }
+
+  &.closed::before {
+    transform: rotate(-90deg);
+    transform-origin: 100% 50%;
+    right: -6px;
+  }
+
+  &:hover {
+    &::before {
+      border-top: 12px solid #4b5247;
+    }
+
+    ~ .sidebarContent {
+      border-right: 3px solid #4b5247;
+    }
   }
 }
 
@@ -68,6 +99,7 @@
   &::after {
     content: "";
     position: absolute;
+    box-sizing: content-box;
     left: 0.375rem;
     top: 50%;
     width: 5px;
@@ -130,4 +162,26 @@
       background-color: #d6d6d6;
     }
   }
+}
+
+.navList,
+.title,
+.section,
+.navLink {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.3s ease 0.3s, transform 0.3s ease 0.3s;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.sidebar.closed .navList,
+.sidebar.closed .title,
+.sidebar.closed .section,
+.sidebar.closed .navLink {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  visibility: hidden;
 }
