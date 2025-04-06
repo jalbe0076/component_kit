@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
+import Sidebar from "./Sidebar";
 
 export const metadata: Metadata = {
   title: "Component Library",
@@ -15,8 +16,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="layout-container">
+          <Sidebar />
           <main className="content">{children}</main>
-          <aside className="sidebar">Sidebar placeholder</aside>
         </div>
       </body>
     </html>

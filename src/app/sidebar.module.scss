@@ -1,0 +1,133 @@
+.sidebar {
+  background-color: #3e433b;
+  color: #f6f6f6;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  border-right: 2px solid #2a2e28;
+  transition: all 0.3s ease;
+
+  &.closed {
+    min-width: 20px;
+    width: 20px;
+    overflow: hidden;
+  }
+
+  &.open {
+    min-width: 275px;
+    width: 275px;
+  }
+}
+
+.toggleButton {
+  position: absolute;
+  right: -15px;
+  top: 40px;
+  width: 30px;
+  height: 30px;
+  background-color: #2a2e28;
+  border: 2px solid #2a2e28;
+  transform: rotate(45deg);
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+
+  &:hover,
+  &:focus {
+    background-color: #4b5247;
+    outline: none;
+  }
+}
+
+.title {
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.section {
+  font-size: 1rem;
+  margin-bottom: 0.3125rem;
+  position: relative;
+  padding-left: 1.875rem;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0.625rem;
+    top: 65%;
+    width: 1px;
+    height: 12px;
+    background-color: #f6f6f6;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0.375rem;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    border: 2px solid #f6f6f6;
+    transform: translateY(-50%);
+  }
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.navItem {
+  position: relative;
+
+  &:last-child {
+    margin-bottom: 0.625rem;
+  }
+}
+
+.navLink {
+  text-decoration: none;
+  display: block;
+  padding: 3px 3px 3px 40px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #f6f6f6;
+    z-index: 0;
+  }
+
+  &:hover {
+    background-color: #343b32;
+    color: #d6d6d6;
+
+    &::before {
+      background-color: #d6d6d6;
+    }
+  }
+
+  &.active {
+    background-color: #343b32;
+    color: #d6d6d6;
+
+    &::before {
+      background-color: #d6d6d6;
+    }
+  }
+}
