@@ -35,7 +35,7 @@ const Button: React.FC<ButtonProps> = ({
     variant= "primary",
     className,
     color = "#463ACB",
-    colorHover = "#3730a3",
+    colorHover = "#3730A3",
     rounded = false,
     iconLeft,
     iconLeftClassName,

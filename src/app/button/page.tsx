@@ -85,7 +85,7 @@ export default function ButtonDocs() {
                   <code>string</code>
                 </td>
                 <td>
-                  <code>"#3730a3"</code>
+                  <code>"#3730A3"</code>
                 </td>
                 <td>
                   Overrides the hover color (not applicable to the "destructive"
