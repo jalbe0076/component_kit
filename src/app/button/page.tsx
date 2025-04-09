@@ -21,10 +21,11 @@ export default function ButtonDocs() {
   const [showLeftIcon, setShowLeftIcon] = useState(false);
   const [showRightIcon, setShowRightIcon] = useState(false);
   const [color, setColor] = useState("#463ACB");
-  const [hoverColor, setHoverColor] = useState("#3730a3");
+  const [hoverColor, setHoverColor] = useState("#3730A3");
 
   const sampleCode = `
 <Button
+    variant="primary"
     style={{
         backgroundColor: "#0070f3",
         padding: "12px 24px",
@@ -34,6 +35,28 @@ export default function ButtonDocs() {
     }}
 >
     Custom Styled Button
+</Button>
+`;
+
+const defaultButtonCode = `
+<Button${
+  variant !== "primary" ||
+  color !== "#463ACB" ||
+  hoverColor !== "#3730A3" ||
+  size !== "md" ||
+  rounded ||
+  showLeftIcon ||
+  showRightIcon
+    ? `${variant !== "primary" ? `\n    variant="${variant}"` : ""}${
+        color !== "#463ACB" ? `\n    color="${color}"` : ""
+      }${hoverColor !== "#3730A3" ? `\n    hoverColor="${hoverColor}"` : ""}${
+        size !== "md" ? `\n    size="${size}"` : ""
+      }${rounded ? `\n    rounded="${rounded}"` : ""}${
+        showLeftIcon ? `\n    iconLeft={<StarIcon />}` : ""
+      }${showRightIcon ? `\n    iconRight={<StarIcon />}` : ""}\n`
+    : ""
+}>
+    ${text}
 </Button>
 `;
 
@@ -64,45 +87,51 @@ export default function ButtonDocs() {
             </Button>
           </div>
           <div>
-            <label>Button Text</label>
-            <input value={text} onChange={(e) => setText(e.target.value)} />
-
             <label>
-                <span>Colour</span>
-              <input
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-              />
+              Button Text
+              <input value={text} onChange={(e) => setText(e.target.value)} />
             </label>
 
             <label>
-                <span>Hover Colour</span>
+              Colour
+              <input value={color} onChange={(e) => setColor(e.target.value)} />
+            </label>
+
+            <label>
+              Hover Colour
               <input
                 value={hoverColor}
                 onChange={(e) => setHoverColor(e.target.value)}
               />
             </label>
-            
-            <label>Variant</label>
-            <select
-              value={variant}
-              onChange={(e) => setVariant(e.target.value as Variant)}
-            >
-              <option>primary</option>
-              <option>secondary</option>
-              <option>outline</option>
-              <option>destructive</option>
-              <option>link-color</option>
-              <option>link-grey</option>
-            </select>
 
-            <label>Size</label>
-            <select value={size} onChange={(e) => setSize(e.target.value as Size)}>
-              <option>sm</option>
-              <option>md</option>
-              <option>lg</option>
-              <option>xl</option>
-            </select>
+            <label>
+              Variant
+              <select
+                value={variant}
+                onChange={(e) => setVariant(e.target.value as Variant)}
+              >
+                <option value="primary">primary</option>
+                <option value="secondary">secondary</option>
+                <option value="outline">outline</option>
+                <option value="destructive">destructive</option>
+                <option value="link-color">link-color</option>
+                <option value="link-grey">link-grey</option>
+              </select>
+            </label>
+
+            <label>
+              Size
+              <select
+                value={size}
+                onChange={(e) => setSize(e.target.value as Size)}
+              >
+                <option value="sm">sm</option>
+                <option value="md">md</option>
+                <option value="lg">lg</option>
+                <option value="xl">xl</option>
+              </select>
+            </label>
 
             <label>
               <input
@@ -110,7 +139,7 @@ export default function ButtonDocs() {
                 checked={rounded}
                 onChange={(e) => setRounded(e.target.checked)}
               />
-              <span>Rounded</span>
+              Rounded
             </label>
 
             <label>
@@ -119,7 +148,7 @@ export default function ButtonDocs() {
                 checked={showLeftIcon}
                 onChange={(e) => setShowLeftIcon(e.target.checked)}
               />
-              <span>Left Icon</span>
+              Left Icon
             </label>
 
             <label>
@@ -128,9 +157,10 @@ export default function ButtonDocs() {
                 checked={showRightIcon}
                 onChange={(e) => setShowRightIcon(e.target.checked)}
               />
-              <span>Right Icon</span>
+              Right Icon
             </label>
           </div>
+          <CodeBlock code={defaultButtonCode}></CodeBlock>
         </div>
       </section>
       <section>
