@@ -1,7 +1,28 @@
 "use client";
+import { useState } from "react";
+import { Button } from "../../components";
+import StarIcon from "../../icons/StarIcon";
 import CodeBlock from "../../utils/CodeBlock";
 
 export default function ButtonDocs() {
+  type Variant =
+    | "primary"
+    | "secondary"
+    | "outline"
+    | "destructive"
+    | "link-color"
+    | "link-grey";
+  type Size = "sm" | "md" | "lg" | "xl";
+
+  const [text, setText] = useState("Default Button");
+  const [variant, setVariant] = useState<Variant>("primary");
+  const [size, setSize] = useState<Size>("md");
+  const [rounded, setRounded] = useState(false);
+  const [showLeftIcon, setShowLeftIcon] = useState(false);
+  const [showRightIcon, setShowRightIcon] = useState(false);
+  const [color, setColor] = useState("#463ACB");
+  const [hoverColor, setHoverColor] = useState("#3730a3");
+
   const sampleCode = `
 <Button
     style={{
@@ -25,6 +46,92 @@ export default function ButtonDocs() {
           responds to user input. It’s used to trigger actions within your
           application and can be customized in style, size, and behavior.
         </p>
+      </section>
+      <section>
+        <h2>Playground</h2>
+        <div>
+          <div>
+            <Button
+              variant={variant}
+              size={size}
+              rounded={rounded}
+              iconLeft={showLeftIcon ? <StarIcon /> : undefined}
+              iconRight={showRightIcon ? <StarIcon /> : undefined}
+              color={color}
+              colorHover={hoverColor}
+            >
+              {text}
+            </Button>
+          </div>
+          <div>
+            <label>Button Text</label>
+            <input value={text} onChange={(e) => setText(e.target.value)} />
+
+            <label>
+                <span>Colour</span>
+              <input
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+              />
+            </label>
+
+            <label>
+                <span>Hover Colour</span>
+              <input
+                value={hoverColor}
+                onChange={(e) => setHoverColor(e.target.value)}
+              />
+            </label>
+            
+            <label>Variant</label>
+            <select
+              value={variant}
+              onChange={(e) => setVariant(e.target.value as Variant)}
+            >
+              <option>primary</option>
+              <option>secondary</option>
+              <option>outline</option>
+              <option>destructive</option>
+              <option>link-color</option>
+              <option>link-grey</option>
+            </select>
+
+            <label>Size</label>
+            <select value={size} onChange={(e) => setSize(e.target.value as Size)}>
+              <option>sm</option>
+              <option>md</option>
+              <option>lg</option>
+              <option>xl</option>
+            </select>
+
+            <label>
+              <input
+                type="checkbox"
+                checked={rounded}
+                onChange={(e) => setRounded(e.target.checked)}
+              />
+              <span>Rounded</span>
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                checked={showLeftIcon}
+                onChange={(e) => setShowLeftIcon(e.target.checked)}
+              />
+              <span>Left Icon</span>
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                checked={showRightIcon}
+                onChange={(e) => setShowRightIcon(e.target.checked)}
+              />
+              <span>Right Icon</span>
+            </label>
+          </div>
+        </div>
       </section>
       <section>
         <h2>Props</h2>
