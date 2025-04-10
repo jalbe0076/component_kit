@@ -479,10 +479,10 @@ export default function ButtonDocs() {
           </p>
 
           <div>
-            <Button aria-label="delete">
+            <Button variant="destructive" aria-label="delete">
               <DeleteIcon />
             </Button>
-            <Button aria-label="send">
+            <Button variant="outline" aria-label="send">
               <SendIcon />
             </Button>
             <Button aria-label="favourite">
@@ -491,10 +491,10 @@ export default function ButtonDocs() {
           </div>
           <div>
             <CodeBlock
-              code={`<Button aria-label="delete"><DeleteIcon /></Button>`}
+              code={`<Button variant="destructive" aria-label="delete"><DeleteIcon /></Button>`}
             />
             <CodeBlock
-              code={`<Button aria-label="send"><SendIcon /></Button>`}
+              code={`<Button variant="outline" aria-label="send"><SendIcon /></Button>`}
             />
             <CodeBlock
               code={`<Button aria-label="favourite"><StarIcon /></Button>`}
