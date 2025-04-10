@@ -297,6 +297,241 @@ export default function ButtonDocs() {
           </table>
         </div>
       </section>
+
+      <section>
+        <h2>Button Previews</h2>
+
+        {/* === Variants === */}
+        <section>
+          <h3>Variants</h3>
+          <p>
+            The <code>variant</code> prop controls the visual style of the
+            button and comes in six options, primary (default), secondary,
+            outline, destructive, link-color, and link-grey. Each variant serves
+            a different purpose and should be used accordingly.
+          </p>
+          <div>
+            <Button variant="primary">Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="outline">Outline</Button>
+            <Button variant="destructive">Destructive</Button>
+            <Button variant="link-color">Link Color</Button>
+            <Button variant="link-grey">Link Grey</Button>
+          </div>
+
+          <h4>Primary</h4>
+          <p>Use for the main call-to-action on a screen.</p>
+          <Button variant="primary">Primary</Button>
+          <Button variant="primary" disabled>
+            Primary Disabled
+          </Button>
+          <CodeBlock code={`<Button variant="primary">Primary</Button>`} />
+          <CodeBlock
+            code={`<Button variant="primary" disabled>Primary</Button>`}
+          />
+
+          <h4>Secondary</h4>
+          <p>Use for less prominent actions or to support a primary button.</p>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="secondary" disabled>
+            Secondary Disabled
+          </Button>
+          <CodeBlock code={`<Button variant="secondary">Secondary</Button>`} />
+          <CodeBlock
+            code={`<Button variant="secondary" disabled>Secondary</Button>`}
+          />
+
+          <h4>Outline</h4>
+          <p>
+            An unfilled button with a border — great for secondary actions
+            without too much visual weight.
+          </p>
+          <Button variant="outline">Outline</Button>
+          <Button variant="outline" disabled>
+            Outline Disabled
+          </Button>
+          <CodeBlock code={`<Button variant="outline">Outline</Button>`} />
+          <CodeBlock
+            code={`<Button variant="outline" disabled>Outline</Button>`}
+          />
+
+          <h4>Destructive</h4>
+          <p>
+            Use to indicate actions with potentially dangerous consequences,
+            like deletions.
+          </p>
+          <Button variant="destructive">Destructive</Button>
+          <Button variant="destructive" disabled>
+            Destructive Disabled
+          </Button>
+          <CodeBlock
+            code={`<Button variant="destructive">Destructive</Button>`}
+          />
+          <CodeBlock
+            code={`<Button variant="destructive" disabled>Destructive</Button>`}
+          />
+
+          <h4>Link - Color</h4>
+          <p>A button styled like a link with color emphasis.</p>
+          <Button variant="link-color">Link Color</Button>
+          <Button variant="link-color" disabled>
+            Link Color Disabled
+          </Button>
+          <CodeBlock
+            code={`<Button variant="link-color">Link Color</Button>`}
+          />
+          <CodeBlock
+            code={`<Button variant="link-color" disabled>Link Color</Button>`}
+          />
+
+          <h4>Link - Grey</h4>
+          <p>A neutral link-style button, suitable for low-emphasis actions.</p>
+          <Button variant="link-grey">Link Grey</Button>
+          <Button variant="link-grey" disabled>
+            Link Grey Disabled
+          </Button>
+          <CodeBlock code={`<Button variant="link-grey">Link Grey</Button>`} />
+          <CodeBlock
+            code={`<Button variant="link-grey" disabled>Link Grey</Button>`}
+          />
+        </section>
+
+        {/* === Sizes === */}
+        <section>
+          <h3>Sizes</h3>
+          <p>
+            The <code>size</code> prop adjusts the button’s padding and font
+            size. Choose from <code>"sm"</code>, <code>"md"</code>,{" "}
+            <code>"lg"</code>, and <code>"xl"</code>.
+          </p>
+          <div>
+            <Button size="sm">Small</Button>
+            <Button size="md">Medium</Button>
+            <Button size="lg">Large</Button>
+            <Button size="xl">Extra Large</Button>
+          </div>
+          <div>
+            <CodeBlock code={`<Button size="sm">Small</Button>`} />
+            <CodeBlock code={`<Button size="md">Medium</Button>`} />
+            <CodeBlock code={`<Button size="lg">Large</Button>`} />
+            <CodeBlock code={`<Button size="xl">Extra Large</Button>`} />
+          </div>
+        </section>
+
+        {/* === OnClick === */}
+        <section>
+          <h3>Click Actions</h3>
+          <p>
+            Use the <code>onClick</code> prop to define what happens when the
+            button is clicked. This is typically a function that runs in
+            response to the user’s interaction.
+          </p>
+
+          <Button onClick={() => alert("You clicked me!")}>Click Me</Button>
+          <CodeBlock
+            code={`<Button onClick={() => alert("You clicked me!")}>Click Me</Button>`}
+          />
+        </section>
+
+        {/* === Buttons with icons and label === */}
+        <section>
+          <h3>Buttons with icons and label</h3>
+          <p>
+            Add SVG icons to your button using <code>iconLeft</code> or{" "}
+            <code>iconRight</code>. These accept a React element, typically an
+            inline SVG or component. Use <code>iconLeftClassName</code> and{" "}
+            <code>iconRightClassName</code> to apply custom styles through your
+            stylesheet or utility classes.
+          </p>
+
+          <div>
+            <Button
+              variant="destructive"
+              iconLeft={<DeleteIcon />}
+              iconLeftClassName="left-icon"
+            >
+              Delete
+            </Button>
+            <Button iconRight={<SendIcon />} iconRightClassName="right-icon">
+              Send
+            </Button>
+          </div>
+          <div>
+            <CodeBlock
+              code={`<Button variant="destructive" iconLeft={<DeleteIcon />} iconLeftClassName="left-icon">Delete</Button>`}
+            />
+            <CodeBlock
+              code={`<Button iconRight={<SendIcon />} iconRightClassName="right-icon">Send</Button>`}
+            />
+          </div>
+        </section>
+
+        {/* === Icon button === */}
+        <section>
+          <h3>Icon Button</h3>
+          <p>
+            Create an icon-only button by passing an SVG element as the child
+            instead of a text label. This is ideal for compact interfaces like
+            toolbars or action menus.
+            <strong>Note:</strong> For accessibility, include an{" "}
+            <code>aria-label</code> that clearly describes the button’s purpose
+            for screen readers.
+          </p>
+
+          <div>
+            <Button aria-label="delete">
+              <DeleteIcon />
+            </Button>
+            <Button aria-label="send">
+              <SendIcon />
+            </Button>
+            <Button aria-label="favourite">
+              <StarIcon />
+            </Button>
+          </div>
+          <div>
+            <CodeBlock
+              code={`<Button aria-label="delete"><DeleteIcon /></Button>`}
+            />
+            <CodeBlock
+              code={`<Button aria-label="send"><SendIcon /></Button>`}
+            />
+            <CodeBlock
+              code={`<Button aria-label="favourite"><StarIcon /></Button>`}
+            />
+          </div>
+        </section>
+
+        {/* === Colors & Rounded === */}
+        <section>
+          <h3>Custom Colors & Rounded</h3>
+          <p>
+            Customize your button’s appearance using <code>color</code>,{" "}
+            <code>colorHover</code>, and <code>rounded</code>. The{" "}
+            <code>color</code> props support any valid color value, such as hex
+            codes, color names, or RGB/HSL formats. Enabling{" "}
+            <code>rounded</code> gives the button a smooth, pill-like shape.
+          </p>
+
+          <div>
+            <Button color="#0070f3" colorHover="#0051a2">
+              Custom Color
+            </Button>
+            <Button color="#1e293b" colorHover="#334155" rounded>
+              Rounded Button
+            </Button>
+          </div>
+          <div>
+            <CodeBlock
+              code={`<Button color="#0070f3" colorHover="#0051a2">Custom Color</Button>`}
+            />
+            <CodeBlock
+              code={`<Button color="#1e293b" colorHover="#334155" rounded>Rounded Button</Button>`}
+            />
+          </div>
+        </section>
+      </section>
+
       <section>
         <h2>Styling</h2>
         <p>
