@@ -27,7 +27,14 @@
 }
 
 .btn {
-    --btn-secondary-color: #fff;
+    --btn-primary-color: rgb(90, 75, 220);
+    --btn-primary-color-hover: rgb(40, 30, 120);
+    --btn-secondary-color: rgb(255, 255, 255);
+
+    @media (prefers-color-scheme: dark) {
+        --btn-primary-color: rgb(100, 165, 227);
+        --btn-primary-color-hover: rgb(74, 145, 216);
+    }
     border-radius: var(--btn-border-radius);
     border: none;
     box-sizing: border-box;
@@ -68,11 +75,11 @@
     }
     
     &.destructive {
-        background-color: #dc2626;
+        background-color: rgb(220, 38, 38);
         color: var(--btn-secondary-color);
         
         &:hover:not([disabled]) {
-            background-color: #b91c1c;
+            background-color: rgb(185, 28, 28);
         }
     }
 }
@@ -84,9 +91,12 @@
 
 .secondary, 
 .outline {
-    background-color: var(--btn-secondary-color);
     color: var(--btn-primary-color);
     fill: var(--btn-primary-color);
+}
+
+.secondary {
+    background-color: var(--btn-secondary-color);
     
     &:hover:not([disabled]) {
         color: var(--btn-secondary-color);
@@ -95,8 +105,16 @@
 }
 
 .outline {
+    background: none;
     padding: calc(var(--paddingY) - 1px) calc(var(--paddingX) - 1px);
     border: 1px solid var(--btn-primary-color);
+
+    &:hover:not([disabled]) {
+        background: none;
+        border-color: var(--btn-primary-color-hover);
+        color: var(--btn-primary-color-hover);
+        fill: var(--btn-primary-color-hover);
+    }
 }
 
 .link-color,
@@ -123,32 +141,32 @@
 }
 
 .link-grey {
-    color: #525252;
-    fill: #525252;
+    color: rgb(82, 82, 82);
+    fill: rgb(82, 82, 82);
     
     &:hover:not([disabled]) {
-        color: #171717;
-        fill: #171717;
+        color: rgb(23, 23, 23);
+        fill: rgb(23, 23, 23);
     }
 }
 
 @media (prefers-color-scheme: dark) {
     .secondary, 
     .outline {
-        --btn-secondary-color: #e2e2e2;
+        --btn-secondary-color: rgb(226, 226, 226);
         
         &:hover:not([disabled]) {
-            --btn-secondary-color: #e2e2e2;
+            --btn-secondary-color: rgb(226, 226, 226);
         }
     }
-    
+
     .link-grey {
-        color: #e2e2e2;
-        fill: #e2e2e2;
+        color: rgb(226, 226, 226);
+        fill: rgb(226, 226, 226);
         
         &:hover:not([disabled]) {
-            color: #ffffff;
-            fill: #ffffff;
+            color: rgb(255, 255, 255);
+            fill: rgb(255, 255, 255);
         }
     }
 }
