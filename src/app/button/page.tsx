@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { Button } from "../../components";
 import StarIcon from "../../icons/StarIcon";
+import SendIcon from "../../icons/SendIcon";
+import DeleteIcon from "../../icons/DeleteIcon";
 import CodeBlock from "../../utils/CodeBlock";
 
 export default function ButtonDocs() {
@@ -20,12 +22,11 @@ export default function ButtonDocs() {
   const [rounded, setRounded] = useState(false);
   const [showLeftIcon, setShowLeftIcon] = useState(false);
   const [showRightIcon, setShowRightIcon] = useState(false);
-  const [color, setColor] = useState("#463ACB");
-  const [hoverColor, setHoverColor] = useState("#3730A3");
+  const [color, setColor] = useState("");
+  const [colorHover, setHoverColor] = useState("");
 
   const sampleCode = `
 <Button
-    variant="primary"
     style={{
         backgroundColor: "#0070f3",
         padding: "12px 24px",
@@ -38,24 +39,24 @@ export default function ButtonDocs() {
 </Button>
 `;
 
-const defaultButtonCode = `
+  const defaultButtonCode = `
 <Button${
-  variant !== "primary" ||
-  color !== "#463ACB" ||
-  hoverColor !== "#3730A3" ||
-  size !== "md" ||
-  rounded ||
-  showLeftIcon ||
-  showRightIcon
-    ? `${variant !== "primary" ? `\n    variant="${variant}"` : ""}${
-        color !== "#463ACB" ? `\n    color="${color}"` : ""
-      }${hoverColor !== "#3730A3" ? `\n    hoverColor="${hoverColor}"` : ""}${
-        size !== "md" ? `\n    size="${size}"` : ""
-      }${rounded ? `\n    rounded="${rounded}"` : ""}${
-        showLeftIcon ? `\n    iconLeft={<StarIcon />}` : ""
-      }${showRightIcon ? `\n    iconRight={<StarIcon />}` : ""}\n`
-    : ""
-}>
+    variant !== "primary" ||
+    color !== "" ||
+    colorHover !== "" ||
+    size !== "md" ||
+    rounded ||
+    showLeftIcon ||
+    showRightIcon
+      ? `${variant !== "primary" ? `\n    variant="${variant}"` : ""}${
+          color !== "" ? `\n    color="${color}"` : ""
+        }${colorHover !== "" ? `\n    colorHover="${colorHover}"` : ""}${
+          size !== "md" ? `\n    size="${size}"` : ""
+        }${rounded ? `\n    rounded="${rounded}"` : ""}${
+          showLeftIcon ? `\n    iconLeft={<StarIcon />}` : ""
+        }${showRightIcon ? `\n    iconRight={<StarIcon />}` : ""}\n`
+      : ""
+  }>
     ${text}
 </Button>
 `;
@@ -70,6 +71,7 @@ const defaultButtonCode = `
           application and can be customized in style, size, and behavior.
         </p>
       </section>
+
       <section>
         <h2>Playground</h2>
         <div>
@@ -81,7 +83,7 @@ const defaultButtonCode = `
               iconLeft={showLeftIcon ? <StarIcon /> : undefined}
               iconRight={showRightIcon ? <StarIcon /> : undefined}
               color={color}
-              colorHover={hoverColor}
+              colorHover={colorHover}
             >
               {text}
             </Button>
@@ -100,7 +102,7 @@ const defaultButtonCode = `
             <label>
               Hover Colour
               <input
-                value={hoverColor}
+                value={colorHover}
                 onChange={(e) => setHoverColor(e.target.value)}
               />
             </label>
@@ -163,6 +165,7 @@ const defaultButtonCode = `
           <CodeBlock code={defaultButtonCode}></CodeBlock>
         </div>
       </section>
+
       <section>
         <h2>Props</h2>
         <p>
@@ -172,7 +175,6 @@ const defaultButtonCode = `
           also supports additional props to customize its appearance and
           behavior. Below is a list of additional props:
         </p>
-
         <div>
           <table>
             <thead>
@@ -206,9 +208,7 @@ const defaultButtonCode = `
                 <td>
                   <code>string</code>
                 </td>
-                <td>
-                  <code>"#463ACB"</code>
-                </td>
+                <td>-</td>
                 <td>
                   Overrides the default primary color (not applicable to the
                   "destructive" variant).
@@ -221,9 +221,7 @@ const defaultButtonCode = `
                 <td>
                   <code>string</code>
                 </td>
-                <td>
-                  <code>"#3730A3"</code>
-                </td>
+                <td>-</td>
                 <td>
                   Overrides the hover color (not applicable to the "destructive"
                   variant).
