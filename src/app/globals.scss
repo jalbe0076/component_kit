@@ -12,13 +12,12 @@
 
 .layout-container {
   display: flex;
-  min-height: stretch;
+  min-height: 100vh;
 }
 
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
@@ -30,7 +29,7 @@ body {
 
 * {
   box-sizing: border-box;
-  font-family:  Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -38,7 +37,7 @@ body {
 *,
 *::after,
 *::before,
-input, 
+input,
 textarea {
   box-sizing: border-box;
 }
@@ -46,6 +45,12 @@ textarea {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.layout-content {
+  max-width: 1512px;
+  padding: 2rem;
+  flex: 1;
 }
 
 @media (prefers-color-scheme: dark) {

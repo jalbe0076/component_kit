@@ -15,10 +15,12 @@
 
   background-color: var(--main-bg-color);
   color: var(--main-accent-color);
+  min-height: 100vh;
   height: 100vh;
   position: sticky;
   top: 0;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 
   &.closed {
     min-width: 0.5rem; // 8px
