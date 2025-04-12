@@ -9,6 +9,7 @@ type CodeBlockProps = {
   language?: Language;
   className?: string;
   isThemeDark?: boolean;
+  style?: React.CSSProperties;
 };
 
 export default function CodeBlock({
@@ -16,6 +17,7 @@ export default function CodeBlock({
   language = "jsx",
   className = "",
   isThemeDark,
+  style: customStyle,
 }: CodeBlockProps) {
   const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -53,7 +55,7 @@ export default function CodeBlock({
         getLineProps,
         getTokenProps,
       }) => (
-        <pre className={`${innerClassName} ${className}`} style={style}>
+        <pre className={`${innerClassName} ${className}`} style={{...style, ...customStyle}}>
           {tokens.map((line, i) => {
             // Destructure to remove the `key` from the lineProps
             const { key, ...lineProps } = getLineProps({ line });
