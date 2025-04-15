@@ -5,6 +5,7 @@ import StarIcon from "../../icons/StarIcon";
 import SendIcon from "../../icons/SendIcon";
 import DeleteIcon from "../../icons/DeleteIcon";
 import CodeBlock from "../../utils/CodeBlock";
+import styles from "./buttonPage.module.scss";
 
 export default function ButtonDocs() {
   type Variant =
@@ -24,6 +25,10 @@ export default function ButtonDocs() {
   const [showRightIcon, setShowRightIcon] = useState(false);
   const [color, setColor] = useState("");
   const [colorHover, setHoverColor] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [openPreviews, setOpenPreviews] = useState<{ [key: string]: boolean }>(
+    {}
+  );
 
   const sampleCode = `
 <Button
@@ -61,10 +66,24 @@ export default function ButtonDocs() {
 </Button>
 `;
 
+  const togglePreview = (id: string) => {
+    if (!openPreviews[id]) {
+      setOpenPreviews((prev) => ({
+        ...prev,
+        [id]: true,
+      }));
+    } else {
+      setOpenPreviews((prev) => ({
+        ...prev,
+        [id]: !prev[id],
+      }));
+    }
+  };
+
   return (
-    <div>
+    <article className={styles.container}>
       <section>
-        <h1>Button</h1>
+        <h1 className={styles.titleH1}>Button</h1>
         <p>
           The Button component is a versatile interactive UI element that
           responds to user input. It’s used to trigger actions within your
@@ -73,9 +92,13 @@ export default function ButtonDocs() {
       </section>
 
       <section>
-        <h2>Playground</h2>
-        <div>
-          <div>
+        <h2 className={styles.titleH2}>Playground</h2>
+        <div className={styles.previewContainer}>
+          <div
+            className={`${styles.previewBtn} ${
+              openPreviews["previewPlaground"] ? styles.previewCodeExpanded : ""
+            }`}
+          >
             <Button
               variant={variant}
               size={size}
@@ -84,214 +107,242 @@ export default function ButtonDocs() {
               iconRight={showRightIcon ? <StarIcon /> : undefined}
               color={color}
               colorHover={colorHover}
+              disabled={isDisabled}
             >
               {text}
             </Button>
+            <Button
+              variant="outline"
+              id="test"
+              size="sm"
+              className={styles.previewShowBtn}
+              onClick={() => togglePreview("previewPlaground")}
+              aria-expanded={!!openPreviews["previewPlaground"]}
+              aria-controls="code-preview-playground"
+            >
+              {openPreviews["previewPlaground"] ? "hide code" : "show code"}
+            </Button>
           </div>
-          <div>
-            <label>
-              Button Text
-              <input value={text} onChange={(e) => setText(e.target.value)} />
-            </label>
-
-            <label>
-              Colour
-              <input value={color} onChange={(e) => setColor(e.target.value)} />
-            </label>
-
-            <label>
-              Hover Colour
-              <input
-                value={colorHover}
-                onChange={(e) => setHoverColor(e.target.value)}
-              />
-            </label>
-
-            <label>
-              Variant
-              <select
-                value={variant}
-                onChange={(e) => setVariant(e.target.value as Variant)}
-              >
-                <option value="primary">primary</option>
-                <option value="secondary">secondary</option>
-                <option value="outline">outline</option>
-                <option value="destructive">destructive</option>
-                <option value="link-color">link-color</option>
-                <option value="link-grey">link-grey</option>
-              </select>
-            </label>
-
-            <label>
-              Size
-              <select
-                value={size}
-                onChange={(e) => setSize(e.target.value as Size)}
-              >
-                <option value="sm">sm</option>
-                <option value="md">md</option>
-                <option value="lg">lg</option>
-                <option value="xl">xl</option>
-              </select>
-            </label>
-
-            <label>
-              <input
-                type="checkbox"
-                checked={rounded}
-                onChange={(e) => setRounded(e.target.checked)}
-              />
-              Rounded
-            </label>
-
-            <label>
-              <input
-                type="checkbox"
-                checked={showLeftIcon}
-                onChange={(e) => setShowLeftIcon(e.target.checked)}
-              />
-              Left Icon
-            </label>
-
-            <label>
-              <input
-                type="checkbox"
-                checked={showRightIcon}
-                onChange={(e) => setShowRightIcon(e.target.checked)}
-              />
-              Right Icon
-            </label>
-          </div>
-          <CodeBlock code={defaultButtonCode}></CodeBlock>
+          {openPreviews["previewPlaground"] && (
+            <CodeBlock
+              id="code-preview-playground"
+              className={styles.previewCode}
+              code={defaultButtonCode}
+              aria-hidden={!openPreviews["previewPlaground"]}
+            />
+          )}
         </div>
-      </section>
 
-      <section>
-        <h2>Props</h2>
-        <p>
-          The Button component extends the native <code>&lt;button&gt;</code>{" "}
-          element and accepts all standard props via{" "}
-          <code>React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;</code>. It
-          also supports additional props to customize its appearance and
-          behavior. Below is a list of additional props:
-        </p>
-        <div>
+        <h3 className={styles.titleH3}>Props and Controls</h3>
+        <div className={styles.tableWrapper}>
           <table>
-            <thead>
+            <thead className={styles.tableHeader}>
               <tr>
-                <th>Prop</th>
+                <th>Name</th>
                 <th>Type</th>
-                <th>Default</th>
                 <th>Description</th>
+                <th>Controls</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className={styles.tableBody}>
               <tr>
+                <td className={styles.tableNameRow}>children</td>
                 <td>
-                  <code>variant</code>
-                </td>
-                <td>
-                  <code>
-                    "primary" | "secondary" | "outline" | "destructive" |
-                    "link-color" | "link-grey"
+                  <code className={styles.codeSnippet}>
+                    'string' | SVG
                   </code>
                 </td>
+                <td>The content of the component.</td>
                 <td>
-                  <code>"primary"</code>
+                <label htmlFor="buttonText" className={styles.srOnly}>
+                    children
+                  </label>
+                  <input
+                    id="buttonText"
+                    type="text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.tableNameRow}>variant</td>
+                <td>
+                  <code className={styles.codeSnippet}>
+                    <div>'primary'</div>
+                    <div>| 'secondary' </div>
+                    <div>| 'outline' </div>
+                    <div>| 'destructive' </div>
+                    <div>| 'link-color' </div>
+                    <div>| 'link-grey'</div>
+                  </code>
                 </td>
                 <td>Defines the button style variant.</td>
+                <td>
+                  <label htmlFor="variant" className={styles.srOnly}>
+                    Variant
+                  </label>
+                  <select
+                    id="variant"
+                    value={variant}
+                    onChange={(e) => setVariant(e.target.value as Variant)}
+                  >
+                    <option value="primary">primary</option>
+                    <option value="secondary">secondary</option>
+                    <option value="outline">outline</option>
+                    <option value="destructive">destructive</option>
+                    <option value="link-color">link-color</option>
+                    <option value="link-grey">link-grey</option>
+                  </select>
+                </td>
               </tr>
               <tr>
+                <td className={styles.tableNameRow}>color</td>
                 <td>
-                  <code>color</code>
+                  <code className={styles.codeSnippet}>'string'</code>
                 </td>
+                <td>Overrides the default primary color.</td>
                 <td>
-                  <code>string</code>
+                  <label htmlFor="color" className={styles.srOnly}>
+                    Color
+                  </label>
+                  <input
+                    id="color"
+                    type="text"
+                    value={color}
+                    onChange={(e) => setColor(e.target.value)}
+                  />
                 </td>
+              </tr>
+              <tr>
+                <td className={styles.tableNameRow}>colorHover</td>
+                <td>
+                  <code className={styles.codeSnippet}>'string'</code>
+                </td>
+                <td>Overrides the hover color.</td>
+                <td>
+                  <label htmlFor="colorHover" className={styles.srOnly}>
+                    Hover Color
+                  </label>
+                  <input
+                    id="colorHover"
+                    type="text"
+                    value={colorHover}
+                    onChange={(e) => setHoverColor(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.tableNameRow}>disabled</td>
+                <td>
+                  <code className={styles.codeSnippet}>boolean</code>
+                </td>
+                <td>Disables the button if <code className={styles.codeSnippet}>true</code>.</td>
+                <td>
+                  <label htmlFor="isDisabled" className={styles.checkboxInput}>
+                    <input
+                      id="isDisabled"
+                      type="checkbox"
+                      checked={isDisabled}
+                      onChange={(e) => setIsDisabled(e.target.checked)}
+                    />{" "}
+                    Disabled
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.tableNameRow}>rounded</td>
+                <td>
+                  <code className={styles.codeSnippet}>boolean</code>
+                </td>
+                <td>Applies pill-shaped border radius if true.</td>
+                <td>
+                  <label htmlFor="rounded" className={styles.checkboxInput}>
+                    <input
+                      id="rounded"
+                      type="checkbox"
+                      checked={rounded}
+                      onChange={(e) => setRounded(e.target.checked)}
+                    />{" "}
+                    Rounded
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.tableNameRow}>size</td>
+                <td>
+                  <code className={styles.codeSnippet}>
+                    'sm' <br />| 'md' <br />| 'lg' <br />| 'xl'
+                  </code>
+                </td>
+                <td>Adjusts padding and font size.</td>
+                <td>
+                  <label htmlFor="size" className={styles.srOnly}>
+                    Size
+                  </label>
+                  <select
+                    id="size"
+                    value={size}
+                    onChange={(e) => setSize(e.target.value as Size)}
+                  >
+                    <option value="sm">sm</option>
+                    <option value="md">md</option>
+                    <option value="lg">lg</option>
+                    <option value="xl">xl</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.tableNameRow}>iconLeft</td>
+                <td>
+                  <code className={styles.codeSnippet}>ReactElement&lt;SVGProps&gt;</code>
+                </td>
+                <td>Left-side SVG icon.</td>
+                <td>
+                  <label htmlFor="leftIcon" className={styles.checkboxInput}>
+                    <input
+                      id="leftIcon"
+                      type="checkbox"
+                      checked={showLeftIcon}
+                      onChange={(e) => setShowLeftIcon(e.target.checked)}
+                    />{" "}
+                    Show Left Icon
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.tableNameRow}>iconLeftClassName</td>
+                <td>
+                  <code className={styles.codeSnippet}>'string'</code>
+                </td>
+                <td>ClassName applied to the left icon wrapper.</td>
                 <td>-</td>
+              </tr>
+              <tr>
+                <td className={styles.tableNameRow}>iconRight</td>
                 <td>
-                  Overrides the default primary color (not applicable to the
-                  "destructive" variant).
+                  <code className={styles.codeSnippet}>ReactElement&lt;SVGProps&gt;</code>
+                </td>
+                <td>Right-side SVG icon.</td>
+                <td>
+                  <label htmlFor="rightIcon" className={styles.checkboxInput}>
+                    <input
+                      id="rightIcon"
+                      type="checkbox"
+                      checked={showRightIcon}
+                      onChange={(e) => setShowRightIcon(e.target.checked)}
+                    />{" "}
+                    Show Right Icon
+                  </label>
                 </td>
               </tr>
               <tr>
+                <td className={styles.tableNameRow}>iconRightClassName</td>
                 <td>
-                  <code>colorHover</code>
+                  <code className={styles.codeSnippet}>'string'</code>
                 </td>
-                <td>
-                  <code>string</code>
-                </td>
+                <td>ClassName applied to the right icon wrapper.</td>
                 <td>-</td>
-                <td>
-                  Overrides the hover color (not applicable to the "destructive"
-                  variant).
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <code>rounded</code>
-                </td>
-                <td>
-                  <code>boolean</code>
-                </td>
-                <td>
-                  <code>false</code>
-                </td>
-                <td>
-                  Applies a pill-shaped border radius if <code>true</code>.
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <code>size</code>
-                </td>
-                <td>
-                  <code>"sm" | "md" | "lg" | "xl"</code>
-                </td>
-                <td>
-                  <code>"md"</code>
-                </td>
-                <td>Adjusts padding and font size of the button.</td>
-              </tr>
-              <tr>
-                <td>
-                  <code>iconLeft</code>
-                </td>
-                <td>
-                  <code>ReactElement&lt;SVGProps&gt;</code>
-                </td>
-                <td>-</td>
-                <td>SVG icon placed to the left of the button content.</td>
-              </tr>
-              <tr>
-                <td>
-                  <code>iconLeftClassName</code>
-                </td>
-                <td>
-                  <code>string</code>
-                </td>
-                <td>-</td>
-                <td>Additional className applied to the left icon wrapper.</td>
-              </tr>
-              <tr>
-                <td>
-                  <code>iconRight</code>
-                </td>
-                <td>
-                  <code>ReactElement&lt;SVGProps&gt;</code>
-                </td>
-                <td>-</td>
-                <td>SVG icon placed to the right of the button content.</td>
-              </tr>
-              <tr>
-                <td>
-                  <code>iconRightClassName</code>
-                </td>
-                <td>
-                  <code>string</code>
-                </td>
-                <td>-</td>
-                <td>Additional className applied to the right icon wrapper.</td>
               </tr>
             </tbody>
           </table>
@@ -305,7 +356,7 @@ export default function ButtonDocs() {
         <section>
           <h3>Variants</h3>
           <p>
-            The <code>variant</code> prop controls the visual style of the
+            The <code className={styles.codeSnippet}>variant</code> prop controls the visual style of the
             button and comes in six options, primary (default), secondary,
             outline, destructive, link-color, and link-grey. Each variant serves
             a different purpose and should be used accordingly.
@@ -409,12 +460,6 @@ export default function ButtonDocs() {
             <Button size="md">Medium</Button>
             <Button size="lg">Large</Button>
             <Button size="xl">Extra Large</Button>
-          </div>
-          <div>
-            <CodeBlock code={`<Button size="sm">Small</Button>`} />
-            <CodeBlock code={`<Button size="md">Medium</Button>`} />
-            <CodeBlock code={`<Button size="lg">Large</Button>`} />
-            <CodeBlock code={`<Button size="xl">Extra Large</Button>`} />
           </div>
         </section>
 
@@ -536,12 +581,12 @@ export default function ButtonDocs() {
         <h2>Styling</h2>
         <p>
           You can easily customize the button's appearance using inline styles
-          by passing a `style` prop with standard CSS properties. This allows
-          you to set properties like background color, padding, font size, and
-          more directly within your JSX:
+          by passing a style prop with standard CSS properties. This allows you
+          to set properties like background color, padding, font size, and more
+          directly within your JSX:
         </p>
         <CodeBlock className="code-content" code={sampleCode} />
       </section>
-    </div>
+    </article>
   );
 }
