@@ -10,7 +10,8 @@ type CodeBlockProps = {
   className?: string;
   isThemeDark?: boolean;
   style?: React.CSSProperties;
-};
+  variant?: "inline" | "block";
+} & React.HTMLAttributes<HTMLElement>;
 
 export default function CodeBlock({
   code,
@@ -18,6 +19,8 @@ export default function CodeBlock({
   className = "",
   isThemeDark,
   style: customStyle,
+  variant = "block",
+  ...props
 }: CodeBlockProps) {
   const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -54,24 +57,38 @@ export default function CodeBlock({
         tokens,
         getLineProps,
         getTokenProps,
-      }) => (
-        <pre className={`${innerClassName} ${className}`} style={{...style, ...customStyle}}>
-          {tokens.map((line, i) => {
-            // Destructure to remove the `key` from the lineProps
-            const { key, ...lineProps } = getLineProps({ line });
-
-            return (
-              <div key={i} {...lineProps}>
-                {line.map((token, j) => {
-                  // Destructure to remove the `key` from the tokenProps
-                  const { key, ...tokenProps } = getTokenProps({ token });
-                  return <span key={j} {...tokenProps} />;
-                })}
-              </div>
-            );
-          })}
-        </pre>
-      )}
+      }) =>
+        variant === "inline" ? (
+          <code
+            className={`${innerClassName} ${className}`}
+            style={{ ...style, ...customStyle }}
+            {...props}
+          >
+            {tokens[0].map((token, j) => {
+              const { key, ...tokenProps } = getTokenProps({ token });
+              return <span key={j} {...tokenProps} />;
+            })}
+          </code>
+        ) : (
+          <pre
+            className={`${innerClassName} ${className}`}
+            style={{ ...style, ...customStyle }}
+            {...props}
+          >
+            {tokens.map((line, i) => {
+              const { key, ...lineProps } = getLineProps({ line });
+              return (
+                <div key={i} {...lineProps}>
+                  {line.map((token, j) => {
+                    const { key, ...tokenProps } = getTokenProps({ token });
+                    return <span key={j} {...tokenProps} />;
+                  })}
+                </div>
+              );
+            })}
+          </pre>
+        )
+      }
     </Highlight>
   );
 }
