@@ -50,6 +50,7 @@ export default function ButtonDocs() {
     color !== "" ||
     colorHover !== "" ||
     size !== "md" ||
+    isDisabled ||
     rounded ||
     showLeftIcon ||
     showRightIcon
@@ -58,8 +59,10 @@ export default function ButtonDocs() {
         }${colorHover !== "" ? `\n    colorHover="${colorHover}"` : ""}${
           size !== "md" ? `\n    size="${size}"` : ""
         }${rounded ? `\n    rounded="${rounded}"` : ""}${
-          showLeftIcon ? `\n    iconLeft={<StarIcon />}` : ""
-        }${showRightIcon ? `\n    iconRight={<StarIcon />}` : ""}\n`
+          isDisabled ? `\n    disabled` : ""
+        }${showLeftIcon ? `\n    iconLeft={<StarIcon />}` : ""}${
+          showRightIcon ? `\n    iconRight={<StarIcon />}` : ""
+        }\n`
       : ""
   }>
     ${text}
@@ -148,13 +151,11 @@ export default function ButtonDocs() {
               <tr>
                 <td className={styles.tableNameRow}>children</td>
                 <td>
-                  <code className={styles.codeSnippet}>
-                    'string' | SVG
-                  </code>
+                  <code className={styles.codeSnippet}>'string' | SVG</code>
                 </td>
                 <td>The content of the component.</td>
                 <td>
-                <label htmlFor="buttonText" className={styles.srOnly}>
+                  <label htmlFor="buttonText" className={styles.srOnly}>
                     children
                   </label>
                   <input
@@ -237,7 +238,9 @@ export default function ButtonDocs() {
                 <td>
                   <code className={styles.codeSnippet}>boolean</code>
                 </td>
-                <td>Disables the button if <code className={styles.codeSnippet}>true</code>.</td>
+                <td>
+                If present and true, the column will be disabled. You can write just 'disabled' to disable it.
+                </td>
                 <td>
                   <label htmlFor="isDisabled" className={styles.checkboxInput}>
                     <input
@@ -295,7 +298,9 @@ export default function ButtonDocs() {
               <tr>
                 <td className={styles.tableNameRow}>iconLeft</td>
                 <td>
-                  <code className={styles.codeSnippet}>ReactElement&lt;SVGProps&gt;</code>
+                  <code className={styles.codeSnippet}>
+                    ReactElement&lt;SVGProps&gt;
+                  </code>
                 </td>
                 <td>Left-side SVG icon.</td>
                 <td>
@@ -321,7 +326,9 @@ export default function ButtonDocs() {
               <tr>
                 <td className={styles.tableNameRow}>iconRight</td>
                 <td>
-                  <code className={styles.codeSnippet}>ReactElement&lt;SVGProps&gt;</code>
+                  <code className={styles.codeSnippet}>
+                    ReactElement&lt;SVGProps&gt;
+                  </code>
                 </td>
                 <td>Right-side SVG icon.</td>
                 <td>
@@ -356,10 +363,11 @@ export default function ButtonDocs() {
         <section>
           <h3>Variants</h3>
           <p>
-            The <code className={styles.codeSnippet}>variant</code> prop controls the visual style of the
-            button and comes in six options, primary (default), secondary,
-            outline, destructive, link-color, and link-grey. Each variant serves
-            a different purpose and should be used accordingly.
+            The <code className={styles.codeSnippet}>variant</code> prop
+            controls the visual style of the button and comes in six options,
+            primary (default), secondary, outline, destructive, link-color, and
+            link-grey. Each variant serves a different purpose and should be
+            used accordingly.
           </p>
           <div>
             <Button variant="primary">Primary</Button>
