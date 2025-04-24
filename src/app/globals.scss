@@ -1,14 +1,14 @@
-:root {
-  --background: #f0f1f1;
-  --foreground: #171717;
-}
+// :root {
+//   --background: #f0f1f1;
+//   --foreground: #171717;
+// }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #3a3f37;
-    --foreground: #f6f6f6;
-  }
-}
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --background: #3a3f37;
+//     --foreground: #f6f6f6;
+//   }
+// }
 
 .layout-container {
   display: flex;
@@ -54,6 +54,7 @@ a {
   padding: 2rem;
   flex: 1;
   min-width: 0;
+  margin: 0 auto
 }
 
 @media (prefers-color-scheme: dark) {
