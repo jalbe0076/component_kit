@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import vsDark from "prism-react-renderer/themes/vsDark";
-import vsLight from "prism-react-renderer/themes/vsLight";
 
 type CodeBlockProps = {
   code: string;
@@ -22,34 +21,23 @@ export default function CodeBlock({
   variant = "block",
   ...props
 }: CodeBlockProps) {
-  const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-
-    if (typeof window !== "undefined") {
-      if (isThemeDark !== undefined) {
-        setIsDark(isThemeDark);
-      } else {
-        setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
-      }
-    }
-  }, [isThemeDark]);
+  }, []);
 
   if (!mounted) {
     // Prevent the component from rendering before the theme is applied
     return null;
   }
 
-  const selectedTheme = isDark ? vsDark : vsLight;
-
   return (
     <Highlight
       {...defaultProps}
       code={code.trim()}
       language={language}
-      theme={selectedTheme}
+      theme={vsDark}
     >
       {({
         className: innerClassName,

@@ -1,14 +1,14 @@
 .sidebar {
   --main-bg-color: #f6f6f6;
   --main-accent-color: #2a2e28;
-  --sidebar-border-color: #dfe0df;
+  --sidebar-border-color: #8e958e;
+  --sidebar-border-color-hover: #616461;
   --main-color-hover: #d1d1d1;
   --main-accent-active-color: #484c46;
 
   @media (prefers-color-scheme: dark) {
     --main-bg-color: #343b32;
     --main-accent-color: #f6f6f6;
-    --sidebar-border-color: #2a2e28;
     --main-color-hover: #222520;
     --main-accent-active-color: #d6d6d6;
   }
@@ -43,6 +43,10 @@
   .closed & {
     padding: 0;
   }
+
+  &.hovered {
+    border-right: 3px solid var(--sidebar-border-color-hover); 
+  }
 }
 
 .toggleButton {
@@ -50,49 +54,53 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1rem; // 16px
-  height: 2.1875rem; // 35px
-  top: 1.25rem; // 20px
-  transition: all 0.3s ease;
+  top: 2rem;
   z-index: 10;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
 
-  &::before {
-    content: "";
-    border-left: 16px solid transparent;
-    border-right: 16px solid transparent;
-    border-top: 16px solid var(--sidebar-border-color);
-    transition: transform 0.3s ease, border 0.3s ease;
+  & rect {
+    stroke: var(--sidebar-border-color);
+  }
+
+  & path {
+    fill: var(--sidebar-border-color);
   }
 
   &.open {
-    right: 0.1875rem; // 3px
-
-    &::before {
-      transform: rotate(90deg);
-    }
+    right: -16px;
   }
 
   &.closed {
-    right: -1rem; // -16px
+    right: -24px;
+  }
 
-    &::before {
-      transform: rotate(-90deg);
-    }
+  .icon {
+    width: 28px;
+    height: 28px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   &:hover {
-    &::before {
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-top: 20px solid var(--main-color-hover);
-    }
+    transform: scale(1.05);
+    rect {
+        stroke: var(--sidebar-border-color-hover);
+      }
+    
+      path {
+        fill: var(--sidebar-border-color-hover);
+      }
+  }
 
-    ~ .sidebarContent {
-      border-right: 3px solid var(--main-color-hover);
-    }
+  &.open:hover {
+    transform: translateX(-2px);
+  }
+
+  &.closed:hover {
+    transform: translateX(2px);
   }
 }
 
@@ -115,7 +123,7 @@
     left: 0.625rem; // 10px
     top: 65%;
     width: 1px;
-    height: 0.75rem; // 12px
+    height: 0.875rem; // 14px
     background-color: var(--main-accent-color);
   }
 

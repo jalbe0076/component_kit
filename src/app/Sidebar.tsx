@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./sidebar.module.scss";
+import OpenSidebarIcon from "../icons/OpenSidebarIcon";
+import CloseSidebarIcon from "../icons/CloseSidebarIcon";
 
 const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
   const currentPath = usePathname();
+  const [isHovered, setIsHovered] = useState(false);
 
   const isActive = (path: string) => currentPath === path;
   const isActiveClass = (path: string) => (isActive(path) ? styles.active : "");
@@ -26,9 +29,21 @@ const Sidebar: React.FC = () => {
         aria-label={isOpen ? "Collapse sidebar" : "Expand sidebar"}
         aria-expanded={!isOpen}
         aria-controls="sidebar-nav"
-      />
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {isOpen ? (
+          <span className={styles.icon}>
+            <CloseSidebarIcon />
+          </span>
+        ) : (
+          <span className={styles.icon}>
+            <OpenSidebarIcon />
+          </span>
+        )}
+      </button>
       <nav
-        className={styles.sidebarContent}
+        className={`${styles.sidebarContent}  ${isHovered ? styles.hovered : ""}`}
         id="sidebar-nav"
         role="navigation"
         aria-hidden={!isOpen}
@@ -44,7 +59,7 @@ const Sidebar: React.FC = () => {
               href="/button"
               className={`${styles.navLink} ${isActiveClass("/button")}`}
             >
-              Button (Under Construction)
+              Button
             </Link>
           </li>
           <li className={styles.navItem}>
