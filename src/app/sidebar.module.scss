@@ -3,12 +3,14 @@
   --main-accent-color: #2a2e28;
   --sidebar-border-color: #8e958e;
   --sidebar-border-color-hover: #616461;
+  --secondary-border-color: #dfe0df;
   --main-color-hover: #d1d1d1;
   --main-accent-active-color: #484c46;
 
   @media (prefers-color-scheme: dark) {
     --main-bg-color: #343b32;
     --main-accent-color: #f6f6f6;
+    --secondary-border-color: #2a2e28;
     --main-color-hover: #222520;
     --main-accent-active-color: #d6d6d6;
   }
@@ -45,7 +47,7 @@
   }
 
   &.hovered {
-    border-right: 3px solid var(--sidebar-border-color-hover); 
+    border-right: 3px solid var(--sidebar-border-color-hover);
   }
 }
 
@@ -87,12 +89,12 @@
   &:hover {
     transform: scale(1.05);
     rect {
-        stroke: var(--sidebar-border-color-hover);
-      }
-    
-      path {
-        fill: var(--sidebar-border-color-hover);
-      }
+      stroke: var(--sidebar-border-color-hover);
+    }
+
+    path {
+      fill: var(--sidebar-border-color-hover);
+    }
   }
 
   &.open:hover {
@@ -177,7 +179,7 @@
   }
 
   &:hover {
-    background-color: var(--sidebar-border-color);
+    background-color: var(--secondary-border-color);
     color: var(--main-accent-active-color);
 
     &::before {
@@ -186,7 +188,7 @@
   }
 
   &.active {
-    background-color: var(--sidebar-border-color);
+    background-color: var(--secondary-border-color);
     color: var(--main-accent-active-color);
 
     &::before {
