@@ -7,7 +7,6 @@ type CodeBlockProps = {
   code: string;
   language?: Language;
   className?: string;
-  isThemeDark?: boolean;
   style?: React.CSSProperties;
   variant?: "inline" | "block";
 } & React.HTMLAttributes<HTMLElement>;
@@ -16,7 +15,6 @@ export default function CodeBlock({
   code,
   language = "jsx",
   className = "",
-  isThemeDark,
   style: customStyle,
   variant = "block",
   ...props
@@ -53,6 +51,7 @@ export default function CodeBlock({
             {...props}
           >
             {tokens[0].map((token, j) => {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               const { key, ...tokenProps } = getTokenProps({ token });
               return <span key={j} {...tokenProps} />;
             })}
@@ -64,10 +63,12 @@ export default function CodeBlock({
             {...props}
           >
             {tokens.map((line, i) => {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               const { key, ...lineProps } = getLineProps({ line });
               return (
                 <div key={i} {...lineProps}>
                   {line.map((token, j) => {
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     const { key, ...tokenProps } = getTokenProps({ token });
                     return <span key={j} {...tokenProps} />;
                   })}
