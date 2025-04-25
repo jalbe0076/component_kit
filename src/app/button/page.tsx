@@ -44,27 +44,6 @@ export default function ButtonDocs() {
 </Button>
 `;
 
-  const sampleStylesheet = `
-<Button
-    className="customStylePreview
->
-    Custom Style Sheet
-</Button>
-
-// In your CSS file
-.customStylePreview {
-    background-color: #0070f3;
-    padding: 12px 24px;
-    font-size: 16px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.customStylePreview:hover {
-    background-color: #0051a2;
-}
-`;
-
   const defaultButtonCode = `
 <Button${
     variant !== "primary" ||
@@ -181,7 +160,7 @@ export default function ButtonDocs() {
               <tr>
                 <td className={styles.tableNameRow}>children</td>
                 <td>
-                  <code className={styles.codeSnippet}>'string' | SVG</code>
+                  <code className={styles.codeSnippet}>{"'string' | SVG"}</code>
                 </td>
                 <td>The content of the component.</td>
                 <td>
@@ -200,12 +179,12 @@ export default function ButtonDocs() {
                 <td className={styles.tableNameRow}>variant</td>
                 <td>
                   <code className={styles.codeSnippet}>
-                    <div>'primary'</div>
-                    <div>| 'secondary' </div>
-                    <div>| 'outline' </div>
-                    <div>| 'destructive' </div>
-                    <div>| 'link-color' </div>
-                    <div>| 'link-grey'</div>
+                    <div>{"'primary'"}</div>
+                    <div>{"| 'secondary'"} </div>
+                    <div>{"| 'outline'"} </div>
+                    <div>{"| 'destructive'"} </div>
+                    <div>{"| 'link-color'"} </div>
+                    <div>{"| 'link-grey'"}</div>
                   </code>
                 </td>
                 <td>Defines the button style variant.</td>
@@ -230,7 +209,7 @@ export default function ButtonDocs() {
               <tr>
                 <td className={styles.tableNameRow}>color</td>
                 <td>
-                  <code className={styles.codeSnippet}>'string'</code>
+                  <code className={styles.codeSnippet}>{"'string'"}</code>
                 </td>
                 <td>Overrides the default primary color.</td>
                 <td>
@@ -248,7 +227,7 @@ export default function ButtonDocs() {
               <tr>
                 <td className={styles.tableNameRow}>colorHover</td>
                 <td>
-                  <code className={styles.codeSnippet}>'string'</code>
+                  <code className={styles.codeSnippet}>{"'string'"}</code>
                 </td>
                 <td>Overrides the hover color.</td>
                 <td>
@@ -270,7 +249,7 @@ export default function ButtonDocs() {
                 </td>
                 <td>
                   If present and true, the column will be disabled. You can
-                  write just 'disabled' to disable it.
+                  write just {"'disabled'"} to disable it.
                 </td>
                 <td>
                   <label htmlFor="isDisabled" className={styles.checkboxInput}>
@@ -306,7 +285,13 @@ export default function ButtonDocs() {
                 <td className={styles.tableNameRow}>size</td>
                 <td>
                   <code className={styles.codeSnippet}>
-                    'sm' <br />| 'md' <br />| 'lg' <br />| 'xl'
+                    {"'sm' "}
+                    <br />
+                    {"| 'md' "}
+                    <br />
+                    {"| 'lg' "}
+                    <br />
+                    {"| 'xl'"}
                   </code>
                 </td>
                 <td>Adjusts padding and font size.</td>
@@ -349,7 +334,7 @@ export default function ButtonDocs() {
               <tr>
                 <td className={styles.tableNameRow}>iconLeftClassName</td>
                 <td>
-                  <code className={styles.codeSnippet}>'string'</code>
+                  <code className={styles.codeSnippet}>{"'string'"}</code>
                 </td>
                 <td>ClassName applied to the left icon wrapper.</td>
                 <td>-</td>
@@ -377,7 +362,7 @@ export default function ButtonDocs() {
               <tr>
                 <td className={styles.tableNameRow}>iconRightClassName</td>
                 <td>
-                  <code className={styles.codeSnippet}>'string'</code>
+                  <code className={styles.codeSnippet}>{"'string'"}</code>
                 </td>
                 <td>ClassName applied to the right icon wrapper.</td>
                 <td>-</td>
@@ -589,10 +574,10 @@ export default function ButtonDocs() {
           <p className={styles.paragraphSpacing}>
             The <code className={styles.codeSnippet}>size</code> prop adjusts
             the button’s padding and font size. Choose from{" "}
-            <code className={styles.codeSnippet}>"sm"</code>,{" "}
-            <code className={styles.codeSnippet}>"md"</code> (default),{" "}
-            <code className={styles.codeSnippet}>"lg"</code>, and{" "}
-            <code className={styles.codeSnippet}>"xl"</code>.
+            <code className={styles.codeSnippet}>{"'sm'"}</code>,{" "}
+            <code className={styles.codeSnippet}>{"'md'"}</code> (default),{" "}
+            <code className={styles.codeSnippet}>{"'lg'"}</code>, and{" "}
+            <code className={styles.codeSnippet}>{"'xl'"}</code>.
           </p>
           <div className={styles.previewContainerBottom}>
             <div
@@ -777,7 +762,7 @@ export default function ButtonDocs() {
         <h2 className={styles.titleH2}>Styling</h2>
         <div className={styles.paragraphSpacing}>
           <p>
-            You can customize the button's appearance using the{" "}
+            You can customize the {"button's"} appearance using the{" "}
             <code className={styles.codeSnippet}>style</code> prop, which
             accepts standard CSS properties. This allows you to directly set
             values like{" "}
@@ -798,7 +783,7 @@ export default function ButtonDocs() {
               <code className={styles.codeSnippet}>colorHover</code>.
             </li>
             <li>
-              For more complex interactions or responsive design, it's better to
+              For more complex interactions or responsive design, {"it's"} better to
               use CSS classes or styled components.
             </li>
           </ul>
