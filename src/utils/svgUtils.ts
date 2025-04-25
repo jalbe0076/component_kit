@@ -4,9 +4,9 @@ export const isSvgElement = (child: ReactNode) => {
   return React.isValidElement(child) && child.type === "svg";
 };
 
-function isFunctionComponent(
+function isFunctionComponent<P = unknown>(
   type: React.JSX.Element["type"]
-): type is React.FunctionComponent<any> {
+): type is React.FunctionComponent<P> {
   return (
     typeof type === "function" &&
     !(type.prototype && type.prototype.isReactComponent)
