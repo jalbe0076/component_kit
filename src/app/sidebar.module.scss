@@ -1,24 +1,8 @@
 .sidebar {
-  --main-bg-color: #f6f6f6;
-  --main-accent-color: #2a2e28;
-  --sidebar-border-color: #8e958e;
-  --sidebar-border-color-hover: #616461;
-  --secondary-border-color: #dfe0df;
-  --main-color-hover: #d1d1d1;
-  --main-accent-active-color: #484c46;
-
-  @media (prefers-color-scheme: dark) {
-    --main-bg-color: #343b32;
-    --main-accent-color: #f6f6f6;
-    --secondary-border-color: #2a2e28;
-    --main-color-hover: #222520;
-    --main-accent-active-color: #d6d6d6;
-  }
-
   background-color: var(--main-bg-color);
   color: var(--main-accent-color);
-  min-height: 100vh;
-  height: 100vh;
+  min-height: 100dvh;
+  height: 100dvh;
   position: sticky;
   top: 0;
   transition: all 0.3s ease;

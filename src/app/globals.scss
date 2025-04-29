@@ -1,19 +1,47 @@
 :root {
-  --background: #f0f1f1;
-  --foreground: #171717;
+  --background: #dfe0df;
+  --foreground: #2a2e28;
+  --main-bg-color: #f6f6f6;
+  --main-accent-color: #2a2e28;
+  --sidebar-border-color: #8e958e;
+  --sidebar-border-color-hover: #616461;
+  --secondary-border-color: #dfe0df;
+  --main-color-hover: #d1d1d1;
+  --main-accent-active-color: #484c46;
+}
+
+#background-container {
+  background-image: url('../../public/svg/background-light.svg');
+  background-repeat: repeat;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #3a3f37;
+    --background: #3e433b;
     --foreground: #f6f6f6;
+    --main-bg-color: #343b32;
+    --main-accent-color: #f6f6f6;
+    --secondary-border-color: #2a2e28;
+    --main-color-hover: #222520;
+    --main-accent-active-color: #d6d6d6;
+  }
+  
+  html {
+    color-scheme: dark;
+  }
+  
+  #background-container {
+    background-image: url('../../public/svg/background-dark.svg');
   }
 }
+
+
+
 
 .layout-container {
   display: flex;
   flex-wrap: wrap;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 html,
@@ -55,10 +83,4 @@ a {
   flex: 1;
   min-width: 0;
   margin: 0 auto
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
