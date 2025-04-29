@@ -44,8 +44,11 @@
   margin-left: 2.25rem;
 }
 
-.previewContainerBottom {
+.previewContainer {
   margin-bottom: 1.5rem;
+  background-color: var(--main-bg-color);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .previewBtn {
@@ -56,6 +59,7 @@
   position: relative;
   display: inline-flex;
   gap: 1rem;
+  flex-wrap: wrap;
 
   .previewShowBtn {
     position: absolute;
@@ -81,6 +85,8 @@
   padding: 0 1.5rem;
   overflow: hidden;
   box-shadow: 0 4px 12px -2px #323232;
+  overflow: scroll;
+  width: 100%;
 
   &.previewCodeExpanded {
     padding: 1rem 1.5rem;
@@ -128,6 +134,7 @@
 .tableWrapper {
   overflow-x: auto;
   width: 100%;
+  background-color: var(--main-bg-color);
 }
 
 .tableWrapper table {
@@ -146,7 +153,12 @@
   font-size: 1rem;
   padding: 0.5rem 1rem 0.5rem 0.0625rem;
   text-align: left;
+
+  &:first-child {
+    padding-left: 0.5rem;
+  }
 }
+
 .tableHeader td {
   color: var(--foreground);
   font-weight: 400;
@@ -198,14 +210,15 @@
   font-weight: 400;
   font-size: 0.875rem;
   color: #1e6a08;
+  padding-left: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
-    .codeSnippet {
-      background-color: #292f27;
-    }
-
-    .tableBody .tableNameRow {
-        color: #b8e7a9;
-      }
+  .codeSnippet {
+    background-color: #292f27;
   }
+
+  .tableBody .tableNameRow {
+    color: #b8e7a9;
+  }
+}
