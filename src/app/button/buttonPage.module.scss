@@ -222,3 +222,33 @@
     color: #b8e7a9;
   }
 }
+
+@media (max-width: 600px) {
+  .previewContainer {
+    margin-right: -2rem;
+    margin-left: -2rem;
+    width: 100dvw;
+  }
+
+  .previewBtn {
+    border-radius: 0;
+  }
+
+  .previewCode.previewCodeExpanded {
+    border-radius: 0;
+    padding-left: 2rem;
+  }
+
+  .tableWrapper {
+    margin: 0 -2rem;
+    width: 100dvw;
+  }
+
+  .tableHeader th:first-child {
+    padding-left: 2rem;
+  }
+
+  .tableBody .tableNameRow {
+    padding-left: 2rem;
+  }
+}
