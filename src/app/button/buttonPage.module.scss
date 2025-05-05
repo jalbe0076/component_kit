@@ -75,15 +75,16 @@
 }
 
 .previewCode {
+  will-change: transform, opacity;
   border-radius: 0 0 0.5rem 0.5rem;
   font-size: 0.875rem;
   background-color: #292f27;
   transform: translateY(-10px);
   max-height: 0;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, height 0.3s ease, padding 0.3s ease,
+    opacity 0.3s ease;
   opacity: 0;
   padding: 0 1.5rem;
-  overflow: hidden;
   box-shadow: 0 4px 12px -2px #323232;
   overflow: scroll;
   width: 100%;
@@ -135,6 +136,7 @@
   overflow-x: auto;
   width: 100%;
   background-color: var(--main-bg-color);
+  border-radius: 0.5rem;
 }
 
 .tableWrapper table {
