@@ -215,7 +215,7 @@
   padding-left: 0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
+:global(html[data-theme="dark"]) {
   .codeSnippet {
     background-color: #292f27;
   }

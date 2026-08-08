@@ -15,21 +15,16 @@
   background-repeat: repeat;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #3e433b;
-    --foreground: #f6f6f6;
-    --main-bg-color: #343b32;
-    --main-accent-color: #f6f6f6;
-    --secondary-border-color: #2a2e28;
-    --main-color-hover: #222520;
-    --main-accent-active-color: #d6d6d6;
-  }
-  
-  html {
-    color-scheme: dark;
-  }
-  
+html[data-theme="dark"] {
+  --background: #3e433b;
+  --foreground: #f6f6f6;
+  --main-bg-color: #343b32;
+  --main-accent-color: #f6f6f6;
+  --secondary-border-color: #2a2e28;
+  --main-color-hover: #222520;
+  --main-accent-active-color: #d6d6d6;
+  color-scheme: dark;
+
   #background-container {
     background-image: url('../../public/svg/background-dark.svg');
   }

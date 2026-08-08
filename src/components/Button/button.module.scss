@@ -31,7 +31,7 @@
   --btn-primary-color-hover: rgb(63, 56, 118);
   --btn-secondary-color: rgb(255, 255, 255);
 
-  @media (prefers-color-scheme: dark) {
+  :global(html[data-theme="dark"]) & {
     --btn-primary-color: rgb(100, 165, 227);
     --btn-primary-color-hover: rgb(74, 145, 216);
   }
@@ -148,7 +148,7 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
+:global(html[data-theme="dark"]) {
   .secondary,
   .outline {
     --btn-secondary-color: rgb(226, 226, 226);
