@@ -115,7 +115,7 @@ export default function ButtonDocs() {
 
       <section>
         <h2 className={styles.titleH2}>Playground</h2>
-        <div className={styles.previewContainerBottom}>
+        <div className={styles.previewContainer}>
           <div
             className={`${styles.previewBtn} ${
               openPreviews["previewPlaground"] ? styles.previewCodeExpanded : ""
@@ -387,7 +387,7 @@ export default function ButtonDocs() {
             variant serves a different purpose and should be used accordingly.
           </p>
           <div
-            className={`${styles.previewBtn} ${styles.previewContainerBottom}`}
+            className={`${styles.previewBtn} ${styles.previewContainer}`}
           >
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
@@ -401,7 +401,7 @@ export default function ButtonDocs() {
           <p className={styles.paragraphSpacing}>
             Use for the main call-to-action on a screen.
           </p>
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewPrimary"]
@@ -429,7 +429,7 @@ export default function ButtonDocs() {
           <p className={styles.paragraphSpacing}>
             Use for less prominent actions or to support a primary button.
           </p>
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewSecondary"]
@@ -458,7 +458,7 @@ export default function ButtonDocs() {
             An unfilled button with a border — great for secondary actions
             without too much visual weight.
           </p>
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewOutline"]
@@ -487,7 +487,7 @@ export default function ButtonDocs() {
             Use to indicate actions with potentially dangerous consequences,
             like deletions.
           </p>
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewDestructive"]
@@ -515,7 +515,7 @@ export default function ButtonDocs() {
           <p className={styles.paragraphSpacing}>
             A button styled like a link with color emphasis.
           </p>
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewLinkColor"]
@@ -543,7 +543,7 @@ export default function ButtonDocs() {
           <p className={styles.paragraphSpacing}>
             A neutral link-style button, suitable for low-emphasis actions.
           </p>
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewLinkGrey"]
@@ -579,7 +579,7 @@ export default function ButtonDocs() {
             <code className={styles.codeSnippet}>{"'lg'"}</code>, and{" "}
             <code className={styles.codeSnippet}>{"'xl'"}</code>.
           </p>
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewSizes"] ? styles.previewCodeExpanded : ""
@@ -616,7 +616,7 @@ export default function ButtonDocs() {
             define what happens when the button is clicked. This is typically a
             function that runs in response to the user’s interaction.
           </p>
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewClickAction"]
@@ -650,7 +650,7 @@ export default function ButtonDocs() {
             <code className={styles.codeSnippet}>iconRightClassName</code> to
             apply custom styles through your stylesheet or utility classes.
           </p>
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewIconAndLabel"]
@@ -694,7 +694,7 @@ export default function ButtonDocs() {
             describes the button’s purpose for screen readers.
           </p>
 
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewIcon"] ? styles.previewCodeExpanded : ""
@@ -734,7 +734,7 @@ export default function ButtonDocs() {
             <code className={styles.codeSnippet}>rounded</code> gives the button
             a smooth, pill-like shape.
           </p>
-          <div className={styles.previewContainerBottom}>
+          <div className={styles.previewContainer}>
             <div
               className={`${styles.previewBtn} ${
                 !openPreviews["previewColor"] ? styles.previewCodeExpanded : ""
@@ -788,7 +788,7 @@ export default function ButtonDocs() {
             </li>
           </ul>
         </div>
-        <div className={styles.previewContainerBottom}>
+        <div className={styles.previewContainer}>
           <div
             className={`${styles.previewBtn} ${
               !openPreviews["previewStyleInline"]

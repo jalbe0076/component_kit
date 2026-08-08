@@ -44,8 +44,11 @@
   margin-left: 2.25rem;
 }
 
-.previewContainerBottom {
+.previewContainer {
   margin-bottom: 1.5rem;
+  background-color: var(--main-bg-color);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .previewBtn {
@@ -56,6 +59,7 @@
   position: relative;
   display: inline-flex;
   gap: 1rem;
+  flex-wrap: wrap;
 
   .previewShowBtn {
     position: absolute;
@@ -71,16 +75,19 @@
 }
 
 .previewCode {
+  will-change: transform, opacity;
   border-radius: 0 0 0.5rem 0.5rem;
   font-size: 0.875rem;
   background-color: #292f27;
   transform: translateY(-10px);
   max-height: 0;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, height 0.3s ease, padding 0.3s ease,
+    opacity 0.3s ease;
   opacity: 0;
   padding: 0 1.5rem;
-  overflow: hidden;
   box-shadow: 0 4px 12px -2px #323232;
+  overflow: scroll;
+  width: 100%;
 
   &.previewCodeExpanded {
     padding: 1rem 1.5rem;
@@ -128,6 +135,8 @@
 .tableWrapper {
   overflow-x: auto;
   width: 100%;
+  background-color: var(--main-bg-color);
+  border-radius: 0.5rem;
 }
 
 .tableWrapper table {
@@ -146,7 +155,12 @@
   font-size: 1rem;
   padding: 0.5rem 1rem 0.5rem 0.0625rem;
   text-align: left;
+
+  &:first-child {
+    padding-left: 0.5rem;
+  }
 }
+
 .tableHeader td {
   color: var(--foreground);
   font-weight: 400;
@@ -198,14 +212,45 @@
   font-weight: 400;
   font-size: 0.875rem;
   color: #1e6a08;
+  padding-left: 0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-    .codeSnippet {
-      background-color: #292f27;
-    }
-
-    .tableBody .tableNameRow {
-        color: #b8e7a9;
-      }
+:global(html[data-theme="dark"]) {
+  .codeSnippet {
+    background-color: #292f27;
   }
+
+  .tableBody .tableNameRow {
+    color: #b8e7a9;
+  }
+}
+
+@media (max-width: 600px) {
+  .previewContainer {
+    margin-right: -2rem;
+    margin-left: -2rem;
+    width: 100dvw;
+  }
+
+  .previewBtn {
+    border-radius: 0;
+  }
+
+  .previewCode.previewCodeExpanded {
+    border-radius: 0;
+    padding-left: 2rem;
+  }
+
+  .tableWrapper {
+    margin: 0 -2rem;
+    width: 100dvw;
+  }
+
+  .tableHeader th:first-child {
+    padding-left: 2rem;
+  }
+
+  .tableBody .tableNameRow {
+    padding-left: 2rem;
+  }
+}
